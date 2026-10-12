@@ -14,7 +14,7 @@ class Settings(BaseSettings):
     database_url: str = "sqlite+aiosqlite:///./hospital.db"
     auto_create_tables: bool = True  # switch to migrations (Alembic) before production
 
-    jwt_secret: str = "dev-only-secret-change-me-before-deploying-0123456789"
+    jwt_secret: str = "REPLACE_WITH_ENV_SECRET"
     jwt_algorithm: str = "HS256"
     access_token_expire_minutes: int = 60
 
