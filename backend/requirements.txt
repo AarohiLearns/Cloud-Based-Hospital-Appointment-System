@@ -10,3 +10,5 @@ pyjwt>=2.8
 bcrypt>=4.1
 tzdata>=2024.1
 # When you move to PostgreSQL later: pip install asyncpg and change DATABASE_URL.
+asyncpg>=0.29
+mangum>=0.17
