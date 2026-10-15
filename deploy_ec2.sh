@@ -9,15 +9,24 @@ echo "=========================================="
 echo "  Hospital Appointment System - EC2 Setup"
 echo "=========================================="
 
-# 1. Update system and install Python & Git
+# 1. Detect OS and install dependencies
 echo ""
 echo "[Step 1/6] Installing Python and Git..."
-sudo apt update -y && sudo apt install -y python3 python3-pip python3-venv git
+CURRENT_USER=$(whoami)
+HOME_DIR=$(eval echo ~$CURRENT_USER)
+
+if command -v apt-get &> /dev/null; then
+    sudo apt update -y && sudo apt install -y python3 python3-pip python3-venv git
+elif command -v dnf &> /dev/null; then
+    sudo dnf update -y && sudo dnf install -y python3 python3-pip git
+elif command -v yum &> /dev/null; then
+    sudo yum update -y && sudo yum install -y python3 python3-pip git
+fi
 
 # 2. Clone the project from GitHub
 echo ""
 echo "[Step 2/6] Downloading project from GitHub..."
-cd /home/ubuntu
+cd "$HOME_DIR"
 if [ -d "Cloud-Based-Hospital-Appointment-System" ]; then
     echo "Project folder already exists. Pulling latest code..."
     cd Cloud-Based-Hospital-Appointment-System
@@ -30,7 +39,7 @@ fi
 # 3. Set up Python virtual environment and install packages
 echo ""
 echo "[Step 3/6] Setting up Python and installing packages..."
-cd backend
+cd "$HOME_DIR/Cloud-Based-Hospital-Appointment-System/backend"
 python3 -m venv .venv
 source .venv/bin/activate
 pip install --upgrade pip
@@ -44,26 +53,27 @@ python3 -m scripts.seed
 # 5. Create systemd service (runs FastAPI 24/7 in background)
 echo ""
 echo "[Step 5/6] Setting up background service..."
-sudo bash -c 'cat > /etc/systemd/system/hospital.service << EOF
+sudo systemctl stop hospital 2>/dev/null || true
+sudo bash -c "cat > /etc/systemd/system/hospital.service << EOF
 [Unit]
 Description=Hospital Appointment System Backend
 After=network.target
 
 [Service]
-User=ubuntu
-WorkingDirectory=/home/ubuntu/Cloud-Based-Hospital-Appointment-System/backend
-ExecStart=/home/ubuntu/Cloud-Based-Hospital-Appointment-System/backend/.venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000
+User=$CURRENT_USER
+WorkingDirectory=$HOME_DIR/Cloud-Based-Hospital-Appointment-System/backend
+ExecStart=$HOME_DIR/Cloud-Based-Hospital-Appointment-System/backend/.venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000
 Restart=always
 RestartSec=3
 Environment=CORS_ORIGINS=*
 
 [Install]
 WantedBy=multi-user.target
-EOF'
+EOF"
 
 sudo systemctl daemon-reload
 sudo systemctl enable hospital
-sudo systemctl start hospital
+sudo systemctl restart hospital
 
 # 6. Verify everything is working
 echo ""
@@ -90,3 +100,4 @@ else
     echo "Something went wrong. Checking logs..."
     sudo journalctl -u hospital --no-pager -n 20
 fi
+
