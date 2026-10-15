@@ -75,7 +75,6 @@ WorkingDirectory=$HOME_DIR/Cloud-Based-Hospital-Appointment-System/backend
 ExecStart=$HOME_DIR/Cloud-Based-Hospital-Appointment-System/backend/.venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000
 Restart=always
 RestartSec=3
-Environment=CORS_ORIGINS=*
 
 [Install]
 WantedBy=multi-user.target
