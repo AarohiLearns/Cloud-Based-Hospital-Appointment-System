@@ -17,10 +17,19 @@ HOME_DIR=$(eval echo ~$CURRENT_USER)
 
 if command -v apt-get &> /dev/null; then
     sudo apt update -y && sudo apt install -y python3 python3-pip python3-venv git
+    PY_BIN="python3"
 elif command -v dnf &> /dev/null; then
-    sudo dnf update -y && sudo dnf install -y python3 python3-pip git
+    sudo dnf update -y
+    # Install Python 3.11 if available (Amazon Linux 2023 supports python3.11)
+    if sudo dnf install -y python3.11 python3.11-pip git; then
+        PY_BIN="python3.11"
+    else
+        sudo dnf install -y python3 python3-pip git
+        PY_BIN="python3"
+    fi
 elif command -v yum &> /dev/null; then
     sudo yum update -y && sudo yum install -y python3 python3-pip git
+    PY_BIN="python3"
 fi
 
 # 2. Clone the project from GitHub
@@ -40,7 +49,8 @@ fi
 echo ""
 echo "[Step 3/6] Setting up Python and installing packages..."
 cd "$HOME_DIR/Cloud-Based-Hospital-Appointment-System/backend"
-python3 -m venv .venv
+rm -rf .venv
+$PY_BIN -m venv .venv
 source .venv/bin/activate
 pip install --upgrade pip
 pip install -r requirements.txt
@@ -48,7 +58,7 @@ pip install -r requirements.txt
 # 4. Create database and seed demo data
 echo ""
 echo "[Step 4/6] Creating database with demo doctors and accounts..."
-python3 -m scripts.seed
+python -m scripts.seed
 
 # 5. Create systemd service (runs FastAPI 24/7 in background)
 echo ""
