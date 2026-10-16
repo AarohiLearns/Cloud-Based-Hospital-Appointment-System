@@ -47,3 +47,7 @@ async def cancel_appointment(appointment_id: uuid.UUID, user: CurrentUser, svc: 
 @router.post("/{appointment_id}/complete", response_model=AppointmentOut)
 async def complete_appointment(appointment_id: uuid.UUID, user: StaffUser, svc: Svc):
     return await svc.complete(user, appointment_id)
+'''appointments.py is the FastAPI route/controller file for appointments.
+ It receives HTTP requests, checks/authenticates users through dependencies, and passes the actual work to AppointmentService
+ appointments.py is the API/controller layer, while AppointmentService is where the actual appointment business logic lives.
+'''

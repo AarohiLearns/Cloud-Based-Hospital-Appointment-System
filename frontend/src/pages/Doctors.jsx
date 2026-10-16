@@ -45,3 +45,6 @@ export default function Doctors() {
     </>
   );
 }
+/*Doctors.jsx is the frontend page that displays doctors and lets the user search/filter them.*/
+/*Doctors.jsx → gets doctors from the backend, provides name/specialization search,
+ handles loading/errors, and displays each doctor as a clickable card. */
