@@ -11,8 +11,7 @@ Deployed live on **Amazon Web Services (AWS)** within the **AWS Free Tier** usin
 * **Live Web Application:** [http://13.210.205.45:8000](http://13.210.205.45:8000)
 * **Interactive API Docs (Swagger UI):** [http://13.210.205.45:8000/docs](http://13.210.205.45:8000/docs)
 * **AWS Public DNS:** `ec2-13-210-205-45.ap-southeast-2.compute.amazonaws.com`
-* **🎥 Watch Demo Presentation Video:** [Play Video Online](https://github.com/AarohiLearns/Cloud-Based-Hospital-Appointment-System/raw/main/demo/Demo_Presentation_Video.mp4)
-* **📁 Video File in Repository:** [`demo/Demo_Presentation_Video.mp4`](demo/Demo_Presentation_Video.mp4)
+* **🎥 Project Demonstration Video:** [Watch Demo Video](https://drive.google.com) *(Add Drive or YouTube link here)*
 
 ---
 
@@ -127,9 +126,6 @@ The script automatically:
 hospital-appointment-system/
 │
 ├── deploy_ec2.sh                  # Automated AWS EC2 setup and deployment script
-├── demo/
-│   └── Demo_Presentation_Video.mp4 # Video demonstration of the live system
-│
 ├── backend/                       # Python FastAPI backend & static bundle
 │   ├── app/
 │   │   ├── main.py                # FastAPI entry point, static mount, CORS
