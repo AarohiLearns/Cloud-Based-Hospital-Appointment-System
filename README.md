@@ -11,7 +11,9 @@ Deployed live on **Amazon Web Services (AWS)** within the **AWS Free Tier** usin
 * **Live Web Application:** [http://13.210.205.45:8000](http://13.210.205.45:8000)
 * **Interactive API Docs (Swagger UI):** [http://13.210.205.45:8000/docs](http://13.210.205.45:8000/docs)
 * **AWS Public DNS:** `ec2-13-210-205-45.ap-southeast-2.compute.amazonaws.com`
-* **Demo Video:** [`demo/Demo_Presentation_Video.mp4`](demo/Demo_Presentation_Video.mp4)
+* **🎥 Watch Demo Video (Direct Browser Stream):** [Play Video Online](https://github.com/AarohiLearns/Cloud-Based-Hospital-Appointment-System/raw/main/demo/Demo_Presentation_Video.mp4)
+* **☁️ Cloud Hosted Stream (AWS EC2):** [Stream from Cloud Server](http://13.210.205.45:8000/demo.mp4)
+* **📁 Repository File:** [`demo/Demo_Presentation_Video.mp4`](demo/Demo_Presentation_Video.mp4)
 
 ---
 
