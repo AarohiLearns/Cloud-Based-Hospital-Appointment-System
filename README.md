@@ -56,18 +56,6 @@ Deployed live on **Amazon Web Services (AWS)** within the **AWS Free Tier** usin
 
 ---
 
-## 👥 Demo Accounts
-
-The database comes pre-seeded with initial accounts for testing:
-
-| Role | Email | Password | Access / Capabilities |
-| :--- | :--- | :--- | :--- |
-| **Admin** | `admin@hospital.com` | `Admin@123` | View all appointments, manage doctor shifts, add doctors |
-| **Patient** | `patient@hospital.com` | `Patient@123` | Browse doctors, view real-time open slots, book & cancel appointments |
-
-*Visitors can also self-register as a new patient on the website.*
-
----
 
 ## 💻 Local Development Setup
 
