@@ -56,7 +56,6 @@ Deployed live on **Amazon Web Services (AWS)** within the **AWS Free Tier** usin
 
 ---
 
-
 ## 💻 Local Development Setup
 
 ### 1. Prerequisites
